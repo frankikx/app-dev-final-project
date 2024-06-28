@@ -15,6 +15,14 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("inputEmail");
         String password = request.getParameter("inputPassword");
 
+        setSampleSessVars(request);
+
+        response.sendRedirect("index.jsp");
+    }
+
+    private void setSampleSessVars(HttpServletRequest request) {
+        String email = request.getParameter("inputEmail");
+        String password = request.getParameter("inputPassword");
         HttpSession sess = request.getSession();
         sess.setAttribute("email", email);
 
@@ -25,9 +33,7 @@ public class LoginServlet extends HttpServlet {
             sess.setAttribute("userType", "Admin");
         }
 
-        sess.setAttribute("fname", "Eya");
-        sess.setAttribute("lname", "Grasya");
-
-        response.sendRedirect("index.jsp");
+        sess.setAttribute("fname", "Francis");
+        sess.setAttribute("lname", "Santos");
     }
 }

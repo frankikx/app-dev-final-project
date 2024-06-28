@@ -6,6 +6,8 @@
     userType = userType != null ? userType : "";
     lname = lname != null ? lname : "";
     fname = fname != null ? fname : "";
+
+    String prompt = request.getParameter("prompt");
     %>
     <title>Enrollment System</title>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>

@@ -3,6 +3,12 @@
 
 <head>
     <%@include file="WEB-INF/layout/head/headcontents.jsp" %>
+    <%
+    String onLoadSubject = (String)request.getAttribute("onLoadSubject");
+    String onLoadContent = (String)request.getAttribute("onLoadContent");
+    String onLoadShortDesc = (String)request.getAttribute("onLoadShortDesc");
+    String courseId = request.getParameter("courseId");
+    %>
 </head>
 
 <body>
@@ -23,8 +29,8 @@
                             <div class="row align-items-center">
                                 <div class="col-md-10">
                                     <div class="page-header-title">
-                                        <h5 class="m-b-10">Bachelor of Science Information Technology (BSIT)</h5>
-                                        <p class="m-b-0">This program focuses on computers and technology.</p>
+                                        <h5 class="m-b-10"><%=onLoadSubject != null ? onLoadSubject : "" %></h5>
+                                        <p class="m-b-0"><%=onLoadShortDesc != null ? onLoadShortDesc : "No short Description placed here" %></p>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
@@ -46,33 +52,7 @@
                                                     <h5>Description</h5>
                                                 </div>
                                                 <div class="card-block typography">
-                                                    <span>This program focuses on computers and technology. It primarily aims to equipped students to the fast emerging needs of IT industry by instructing them on the principles of computer hardware and software components, algorithms, databases, telecommunications, user tactics, web developments, application testing, and computer graphics. Therefore, be well-prepared upon applying for IT support business processes.</span>
-                                                    <br/><br/>
-                                                    <h4 class="sub-title">Curriculum</h4>
-                                                    <ul>
-                                                        <li>
-                                                            <i class="icofont icofont-double-right text-success"></i> Access to a computer with an internet connection.
-                                                        </li>
-                                                        <li>
-                                                            <i class="icofont icofont-double-right text-success"></i> Consectetur adipiscing elit
-                                                        </li>
-                                                        <li>
-                                                            <i class="icofont icofont-double-right text-success"></i> Integer molestie lorem at massa
-                                                        </li>
-                                                    </ul>
-                                                    <br/><br/>
-                                                    <h4 class="sub-title">Requirements</h4>
-                                                    <ul>
-                                                        <li>
-                                                            <i class="icofont icofont-double-right text-success"></i> Access to a computer with an internet connection.
-                                                        </li>
-                                                        <li>
-                                                            <i class="icofont icofont-double-right text-success"></i> Consectetur adipiscing elit
-                                                        </li>
-                                                        <li>
-                                                            <i class="icofont icofont-double-right text-success"></i> Integer molestie lorem at massa
-                                                        </li>
-                                                    </ul>
+                                                    <%=onLoadContent != null ? onLoadContent : "" %>
                                                     <br/><br/>
                                                     <%
                                                     if(userType != ""){
@@ -87,8 +67,10 @@
                                                         <%
                                                         if(userType.equals("Admin")){
                                                         %>
-                                                    <a href="course-upsert.jsp" class="btn btn-mat waves-effect waves-light btn-success">Edit</a>
-                                                    <button class="btn btn-mat waves-effect waves-light btn-danger">Remove</button>
+                                                    <a href="course-upsert?courseId=<%=courseId %>" class="btn btn-mat waves-effect waves-light btn-success">Edit</a>
+                                                    <button type-"button" class="btn btn-mat waves-effect waves-light btn-danger" data-toggle="popover" data-html="true" data-placement="top" title="<b>Are you sure you want to remove this course?</b>" data-content="<center><a href='course-delete?courseId=<%=courseId %>' class='btn-danger btn btn-mat waves-effect waves-light'>Confirm</button></a>">Remove</button>
+
+
                                                         <%
                                                         }
                                                         %>
@@ -125,6 +107,17 @@
 </div>
 
 <%@include file="WEB-INF/layout/body/footer.jsp" %>
+<script>
+    $(document).ready(function() {
+        $('[data-toggle="popover"]').popover({
+            html: true,
+            content: function() {
+                return $('#primary-popover-content').html();
+            }
+        });
+    });
+
+</script>
 
 </body>
 

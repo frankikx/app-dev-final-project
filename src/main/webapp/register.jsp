@@ -12,7 +12,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-                <form class="md-float-material form-material">
+                <form action="register" method="post" class="md-float-material form-material">
                     <div class="text-center">
                         <img src="assets/images/ptc-images/logo-ptc.png" width="100" height="100" alt="logo.png">
                     </div>
@@ -40,15 +40,6 @@
                                 <label class="float-label">Middle Name</label>
                             </div>
                             <div class="form-group form-primary">
-                                <select name="inputGender" class="form-control">
-                                    <option value="opt1">Select Gender</option>
-                                    <option value="opt2">Male</option>
-                                    <option value="opt3">Female</option>
-                                </select>
-                                <span class="form-bar"></span>
-                                <label class="float-label">Gender</label>
-                            </div>
-                            <div class="form-group form-primary">
                                 <input type="text" name="inputHomeAddr" class="form-control" required="">
                                 <span class="form-bar"></span>
                                 <label class="float-label">Home Address</label>
@@ -59,31 +50,29 @@
                                 <label class="float-label">Cellphone #</label>
                             </div>
                             <div class="form-group form-primary">
-                                <input type="text" name="email" class="form-control" required="">
+                                <input type="text" name="inputEmail" class="form-control" required="">
                                 <span class="form-bar"></span>
                                 <label class="float-label">Your Email Address</label>
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group form-primary">
-                                        <input type="password" name="password" class="form-control" required="">
+                                        <input type="password" name="inputPassword" class="form-control" required="">
                                         <span class="form-bar"></span>
                                         <label class="float-label">Password</label>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group form-primary">
-                                        <input type="password" name="confirm-password" class="form-control" required="">
+                                        <input type="password" name="inputPassConfirm" class="form-control" required="">
                                         <span class="form-bar"></span>
                                         <label class="float-label">Confirm Password</label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row m-t-25 text-left">
-                            </div>
                             <div class="row m-t-30">
                                 <div class="col-md-12">
-                                    <button type="button" class="btn btn-success btn-md btn-block waves-effect text-center m-b-20">Register</button>
+                                    <button type="submit" class="btn btn-success btn-md btn-block waves-effect text-center m-b-20">Register</button>
                                 </div>
                             </div>
                             <hr/>

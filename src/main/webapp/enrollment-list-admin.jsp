@@ -97,7 +97,7 @@
                                                                 <tr>
                                                                     <th scope="row">1</th>
                                                                     <td>Bachelor of Science Information Technology (BSIT)</td>
-                                                                    <td>Eya Grasya</td>
+                                                                    <td>Francis Santos</td>
                                                                     <td>
                                                                         <div class="waves-effect waves-light p-b-10">
                                                                             <div class="bg-warning p-10">PENDING</div>
@@ -110,7 +110,7 @@
                                                                 <tr>
                                                                     <th scope="row">2</th>
                                                                     <td>Bachelor of Science Information Technology (BSIT)</td>
-                                                                    <td>Eya Grasya</td>
+                                                                    <td>Francis Santos</td>
                                                                     <td>
                                                                         <div class="waves-effect waves-light p-b-10">
                                                                             <div class="bg-danger p-10">DENIED</div>
@@ -123,7 +123,7 @@
                                                                 <tr>
                                                                     <th scope="row">3</th>
                                                                     <td>Bachelor of Science Information Technology (BSIT)</td>
-                                                                    <td>Eya Grasya</td>
+                                                                    <td>Francis Santos</td>
                                                                     <td>
                                                                         <div class="waves-effect waves-light p-b-10">
                                                                             <div class="bg-success p-10">FINISHED</div>
@@ -136,7 +136,7 @@
                                                                 <tr>
                                                                     <th scope="row">4</th>
                                                                     <td>Bachelor of Science Information Technology (BSIT)</td>
-                                                                    <td>Eya Grasya</td>
+                                                                    <td>Francis Santos</td>
                                                                     <td>
                                                                         <div class="waves-effect waves-light p-b-10">
                                                                             <div class="bg-info p-10">ENROLLED</div>
@@ -149,7 +149,7 @@
                                                                 <tr>
                                                                     <th scope="row">5</th>
                                                                     <td>Bachelor of Science Information Technology (BSIT)</td>
-                                                                    <td>Eya Grasya</td>
+                                                                    <td>Francis Santos</td>
                                                                     <td>
                                                                         <div class="waves-effect waves-light p-b-10">
                                                                             <div class="bg-default p-10">INCOMPLETE</div>
@@ -162,7 +162,7 @@
                                                             </tbody>
                                                         </table>
 
-                                                        <nav aria-label="...">
+                                                        <!--<nav aria-label="...">
                                                             <ul class="pagination">
                                                                 <li class="page-item disabled">
                                                                     <span class="page-link">Previous</span>
@@ -179,7 +179,7 @@
                                                                     <a class="page-link" href="#">Next</a>
                                                                 </li>
                                                             </ul>
-                                                        </nav>
+                                                        </nav>-->
                                                     </div>
                                                 </div>
                                             </div>

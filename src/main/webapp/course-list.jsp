@@ -3,6 +3,16 @@
 
 <head>
     <%@include file="WEB-INF/layout/head/headcontents.jsp" %>
+    <%@ page import="java.sql.*" %>
+    <%@ page import="com.appdevfinalproject.common.DatabaseConnection" %>
+
+    <%
+    String sql = "select * from courses where status=1";
+
+    Connection con = DatabaseConnection.getCon();
+    PreparedStatement preparedStatement = con.prepareStatement(sql);
+    ResultSet resultSet = preparedStatement.executeQuery();
+    %>
 </head>
 
 <body>
@@ -57,16 +67,19 @@
                                                         <div class="p-15 p-b-0">
                                                             <div class="row">
                                                                 <div class="col-md-6">
-                                                                    <form class="form-material">
+                                                                    <!--<form class="form-material">
                                                                         <div class="form-group form-primary">
                                                                             <input type="text" name="footer-email" class="form-control" required="">
                                                                             <span class="form-bar"></span>
                                                                             <label class="float-label"><i class="fa fa-search m-r-10"></i>Search</label>
                                                                         </div>
-                                                                    </form>
+                                                                    </form>-->
                                                                 </div>
-                                                                <div class="col-md-6">
-
+                                                                <div class="col-md-2">
+                                                                    <!--<button type="button" class="btn btn-mat waves-effect waves-light btn-success pull-left"><i class="ti-filter"></i> Filter</button>-->
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <a href="course-upsert.jsp" class="btn btn-mat waves-effect waves-light btn-primary pull-right"><i class="ti-plus"></i> Add Course</a>
                                                                 </div>
                                                             </div>
 
@@ -76,55 +89,24 @@
                                                                 <tr>
                                                                     <th>#</th>
                                                                     <th>Course</th>
-                                                                    <th>Author</th>
                                                                     <th>Action</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
+                                                                <% while(resultSet.next()){ %>
                                                                 <tr>
-                                                                    <th scope="row">1</th>
-                                                                    <td>Bachelor of Science Information Technology (BSIT)</td>
-                                                                    <td>Eya Grasya</td>
+                                                                    <th scope="row"><%= resultSet.getString(1) %></th>
+                                                                    <td><%= resultSet.getString(2) %></td>
                                                                     <td>
-                                                                        <a href="course-view.jsp" class="btn btn-mat waves-effect waves-light btn-success "><i class="ti-search"></i> View</a>
+                                                                        <a href="course-view?courseId=<%= resultSet.getString(1) %>" class="btn btn-mat waves-effect waves-light btn-success "><i class="ti-search"></i> View</a>
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
-                                                                    <th scope="row">2</th>
-                                                                    <td>Bachelor of Science in Office Administration (BSOA)</td>
-                                                                    <td>Eya Grasya</td>
-                                                                    <td>
-                                                                        <a href="course-view.jsp" class="btn btn-mat waves-effect waves-light btn-success "><i class="ti-search"></i> View</a>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th scope="row">3</th>
-                                                                    <td>Certificate in Computer Sciences (CCS)</td>
-                                                                    <td>Eya Grasya</td>
-                                                                    <td>
-                                                                        <a href="course-view.jsp" class="btn btn-mat waves-effect waves-light btn-success "><i class="ti-search"></i> View</a>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th scope="row">4</th>
-                                                                    <td>Certificate in Office Administration (COA)</td>
-                                                                    <td>Eya Grasya</td>
-                                                                    <td>
-                                                                        <a href="course-view.jsp" class="btn btn-mat waves-effect waves-light btn-success "><i class="ti-search"></i> View</a>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th scope="row">5</th>
-                                                                    <td>Certificate in Hotel and Restaurant Management</td>
-                                                                    <td>Eya Grasya</td>
-                                                                    <td>
-                                                                        <a href="course-view.jsp" class="btn btn-mat waves-effect waves-light btn-success "><i class="ti-search"></i> View</a>
-                                                                    </td>
-                                                                </tr>
+                                                                <% } %>
+
                                                             </tbody>
                                                         </table>
 
-                                                        <nav aria-label="...">
+                                                        <!--<nav aria-label="...">
                                                             <ul class="pagination">
                                                                 <li class="page-item disabled">
                                                                     <span class="page-link">Previous</span>
@@ -141,7 +123,7 @@
                                                                     <a class="page-link" href="#">Next</a>
                                                                 </li>
                                                             </ul>
-                                                        </nav>
+                                                        </nav>-->
                                                     </div>
                                                 </div>
                                             </div>

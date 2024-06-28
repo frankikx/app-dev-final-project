@@ -1,5 +1,8 @@
 package com.appdevfinalproject.servlets;
 
+import com.appdevfinalproject.common.CommonFunctions;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +18,7 @@ public class LogoutServlet extends HttpServlet {
 
         HttpSession sess = request.getSession();
         sess.invalidate();
-        response.sendRedirect("login.jsp?prompt=logoutSuccess");
+
+        CommonFunctions.dispatchWithNotif("login.jsp?prompt=logoutSuccess", "Logging off Successful", "Login to continue.", request, response);
     }
 }

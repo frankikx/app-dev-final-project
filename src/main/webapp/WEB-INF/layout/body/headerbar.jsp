@@ -58,7 +58,12 @@
                             <ul class="show-notification profile-notification">
                                 <li class="waves-effect waves-light">
                                     <a href="login.jsp">
-                                        <i class="ti-layout-sidebar-left"></i> Login
+                                        <i class="ti-layout-sidebar-right"></i> Login
+                                    </a>
+                                </li>
+                                <li class="waves-effect waves-light">
+                                    <a href="register.jsp">
+                                        <i class="ti-pencil-alt"></i> Register
                                     </a>
                                 </li>
                             </ul>
