@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,14 +21,18 @@ public class EnrollmentProcessServlet extends HttpServlet {
         String enrollmentId = request.getParameter("enrollmentId");
         String statusId = request.getParameter("statusId");
 
-        String sql = "update enrollments set status=? where id=?";
+        HttpSession session = request.getSession();
+        String userId = (String)session.getAttribute("userId");
+
+        String sql = "update enrollments set status=?, processed_by=? where id=?";
 
         Connection con = null;
         try {
             con = DatabaseConnection.getCon();
             PreparedStatement preparedStatement = con.prepareStatement(sql);
             preparedStatement.setString(1, statusId);
-            preparedStatement.setString(2, enrollmentId);
+            preparedStatement.setString(2, userId);
+            preparedStatement.setString(3, enrollmentId);
             preparedStatement.executeUpdate();
 
             sql = "select e.id, c.subject, c.contents, c.short_desc, u.lname, u.fname, u.mname, u.cell_no, u.email, u.home_addr from enrollments e inner join courses c on e.course_id = c.id inner join users u on e.user_id=u.id where e.id = ?";
