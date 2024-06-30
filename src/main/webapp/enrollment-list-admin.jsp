@@ -3,7 +3,16 @@
 
 <head>
     <%@include file="WEB-INF/layout/head/headcontents.jsp" %>
+    <%@ page import="java.sql.*" %>
+    <%@ page import="com.appdevfinalproject.common.DatabaseConnection" %>
 </head>
+<%
+
+    String sql = "select e.id, c.subject,  u.lname, u.fname, u.mname,  s.name status, s.id status_id, e.user_id from enrollments e INNER JOIN statuses s on e.status=s.id inner join courses c on e.course_id = c.id inner join users u on e.user_id=u.id order by e.id asc";
+    Connection con = DatabaseConnection.getCon();
+    PreparedStatement preparedStatement = con.prepareStatement(sql);
+    ResultSet resultSet = preparedStatement.executeQuery();
+    %>
 
 <body>
 <%@include file="WEB-INF/layout/body/preloaders.jsp" %>
@@ -54,6 +63,7 @@
                                                 </div>
                                                 <div class="card-block table-border-style">
                                                     <div class="table-responsive">
+                                                        <!--
                                                         <div class="p-15 p-b-0">
                                                             <div class="row">
                                                                 <div class="col-md-6">
@@ -83,6 +93,7 @@
                                                             </div>
 
                                                         </div>
+                                                        -->
                                                         <table class="table table-hover">
                                                             <thead>
                                                                 <tr>
@@ -94,71 +105,44 @@
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
+                                                            <% while(resultSet.next()){ %>
+                                                            <%
+                                                                String tdClass = "label-inverse-default";
+
+                                                                if (Integer.valueOf(resultSet.getString(7))==1){
+                                                                    tdClass = "label-info";
+                                                                }
+
+                                                                if (Integer.valueOf(resultSet.getString(7))==2){
+                                                                    tdClass = "label-inverse-success";
+                                                                }
+
+                                                                if (Integer.valueOf(resultSet.getString(7))==3){
+                                                                    tdClass = "label-inverse-danger";
+                                                                }
+
+                                                                if (Integer.valueOf(resultSet.getString(7))==4){
+                                                                    tdClass = "label-danger";
+                                                                }
+
+                                                                if (Integer.valueOf(resultSet.getString(7))==5){
+                                                                    tdClass = "label-success";
+                                                                }
+                                                            %>
                                                                 <tr>
-                                                                    <th scope="row">1</th>
-                                                                    <td>Bachelor of Science Information Technology (BSIT)</td>
-                                                                    <td>Francis Santos</td>
+                                                                    <th scope="row"><%= resultSet.getString(1) %></th>
+                                                                    <td><%= resultSet.getString(2) %></td>
+                                                                    <td><%= resultSet.getString(3) %> <%= resultSet.getString(4) %> <%= resultSet.getString(5) %> </td>
+
                                                                     <td>
-                                                                        <div class="waves-effect waves-light p-b-10">
-                                                                            <div class="bg-warning p-10">PENDING</div>
-                                                                        </div>
+                                                                        <div class="label-main"><label class="label <%=tdClass %> "><%= resultSet.getString(6) %></label>
+                                                                      </div>
                                                                     </td>
                                                                     <td>
-                                                                        <a href="enrollment-process.jsp" class="btn btn-mat waves-effect waves-light btn-success "><i class="ti-search"></i> View</a>
+                                                                        <a href="enrollment-view?enrollmentId=<%= resultSet.getString(1) %>" class="btn btn-mat waves-effect waves-light btn-success "><i class="ti-search"></i> View</a>
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
-                                                                    <th scope="row">2</th>
-                                                                    <td>Bachelor of Science Information Technology (BSIT)</td>
-                                                                    <td>Francis Santos</td>
-                                                                    <td>
-                                                                        <div class="waves-effect waves-light p-b-10">
-                                                                            <div class="bg-danger p-10">DENIED</div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <a href="enrollment-process.jsp" class="btn btn-mat waves-effect waves-light btn-success "><i class="ti-search"></i> View</a>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th scope="row">3</th>
-                                                                    <td>Bachelor of Science Information Technology (BSIT)</td>
-                                                                    <td>Francis Santos</td>
-                                                                    <td>
-                                                                        <div class="waves-effect waves-light p-b-10">
-                                                                            <div class="bg-success p-10">FINISHED</div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <a href="enrollment-process.jsp" class="btn btn-mat waves-effect waves-light btn-success "><i class="ti-search"></i> View</a>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th scope="row">4</th>
-                                                                    <td>Bachelor of Science Information Technology (BSIT)</td>
-                                                                    <td>Francis Santos</td>
-                                                                    <td>
-                                                                        <div class="waves-effect waves-light p-b-10">
-                                                                            <div class="bg-info p-10">ENROLLED</div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <a href="enrollment-process.jsp" class="btn btn-mat waves-effect waves-light btn-success "><i class="ti-search"></i> View</a>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th scope="row">5</th>
-                                                                    <td>Bachelor of Science Information Technology (BSIT)</td>
-                                                                    <td>Francis Santos</td>
-                                                                    <td>
-                                                                        <div class="waves-effect waves-light p-b-10">
-                                                                            <div class="bg-default p-10">INCOMPLETE</div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <a href="enrollment-process.jsp" class="btn btn-mat waves-effect waves-light btn-success "><i class="ti-search"></i> View</a>
-                                                                    </td>
-                                                                </tr>
+                                                            <% } %>
                                                             </tbody>
                                                         </table>
 

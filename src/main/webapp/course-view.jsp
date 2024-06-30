@@ -60,7 +60,7 @@
                                                         <%
                                                         if(userType.equals("Student")){
                                                         %>
-                                                    <button class="btn btn-mat waves-effect waves-light btn-success">Apply</button>
+                                                    <button class="btn btn-mat waves-effect waves-light btn-success" data-toggle="popover" data-html="true" data-placement="top" title="<b>Are you sure you want to apply for this course?</b>" data-content="<center><a href='course-apply?courseId=<%=courseId %>' class='btn-success btn btn-mat waves-effect waves-light'>Confirm</button></a>">Apply</button>
                                                         <%
                                                         }
                                                         %>

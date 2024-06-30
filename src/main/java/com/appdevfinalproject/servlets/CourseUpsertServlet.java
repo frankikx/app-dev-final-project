@@ -62,7 +62,7 @@ public class CourseUpsertServlet extends HttpServlet {
             return;
         }
 
-        if(courseId == "" || courseId == null || courseId == "null" || courseId.equals("null")){
+        if (courseId == "" || courseId == null || courseId == "null" || courseId.equals("null")) {
             insertCourse(subj, content, request, response);
         } else {
             updateCourse(courseId, subj, content, shortDesc, request, response);

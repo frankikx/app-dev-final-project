@@ -41,11 +41,11 @@
                             if(userType != ""){
                             %>
                             <ul class="show-notification profile-notification">
-                                <li class="waves-effect waves-light">
+                                <!--<li class="waves-effect waves-light">
                                     <a href="profile.jsp">
                                         <i class="ti-user"></i> Profile
                                     </a>
-                                </li>
+                                </li>-->
                                 <li class="waves-effect waves-light">
                                     <a href="logout">
                                         <i class="ti-layout-sidebar-left"></i> Logout

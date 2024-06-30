@@ -31,14 +31,17 @@ public class CourseViewServlet extends HttpServlet {
 
             String subject = "";
             String content = "";
+            String shortDesc = "";
 
             if(resultSet.next()){
                 subject = resultSet.getString("subject");
                 content = resultSet.getString("contents");
+                shortDesc = resultSet.getString("short_desc");
             }
 
             request.setAttribute("onLoadSubject", subject);
             request.setAttribute("onLoadContent", content);
+            request.setAttribute("onLoadShortDesc", shortDesc);
 
             CommonFunctions.dispatchWithNotif("course-view.jsp?courseId="+courseId, "Show Edit Form Successful", content, request, response);
 

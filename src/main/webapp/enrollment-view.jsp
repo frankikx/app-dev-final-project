@@ -3,6 +3,20 @@
 
 <head>
     <%@include file="WEB-INF/layout/head/headcontents.jsp" %>
+    <%
+    String onLoadSubject = (String)request.getAttribute("onLoadSubject");
+    String onLoadContent = (String)request.getAttribute("onLoadContent");
+    String onLoadShortDesc = (String)request.getAttribute("onLoadShortDesc");
+    String onLoadLname = (String)request.getAttribute("onLoadLname");
+    String onLoadFname = (String)request.getAttribute("onLoadFname");
+    String onLoadMname = (String)request.getAttribute("onLoadMname");
+    String onLoadCellNo = (String)request.getAttribute("onLoadCellNo");
+    String onLoadhomeAddr = (String) request.getAttribute("onLoadhomeAddr");
+    String onLoadEmail = (String) request.getAttribute("onLoadEmail");
+
+
+    String enrollmentId = request.getParameter("enrollmentId");
+    %>
 </head>
 
 <body>
@@ -49,42 +63,35 @@
                                                     <form>
                                                         <div class="row">
                                                             <div class="form-group col-sm-4 form-default">
-                                                                <input type="text" name="inputLname" class="form-control" required="">
+                                                                <input type="text" name="inputLname" class="form-control" required="" disabled value="<%=onLoadLname != null ? onLoadLname : "" %>">
                                                                 <label class="float-label">Last Name</label>
                                                             </div>
 
                                                             <div class="form-group col-sm-4 form-default">
-                                                                <input type="text" name="inputFname" class="form-control" required="">
+                                                                <input type="text" name="inputFname" class="form-control" required="" disabled value="<%=onLoadFname != null ? onLoadFname : "" %>">
                                                                 <label class="float-label">First Name</label>
                                                             </div>
 
                                                             <div class="form-group col-sm-4 form-default">
-                                                                <input type="text" name="inputMname" class="form-control" required="">
+                                                                <input type="text" name="inputMname" class="form-control" required="" disabled value="<%=onLoadMname != null ? onLoadMname : "" %>">
                                                                 <label class="float-label">Middle Name</label>
                                                             </div>
                                                         </div>
                                                         <div class="row">
 
-                                                            <div class="form-group col-sm-4 form-default">
-                                                                <select name="inputGender" class="form-control">
-                                                                    <option value="opt1">Select Gender</option>
-                                                                    <option value="opt2">Male</option>
-                                                                    <option value="opt3">Female</option>
-                                                                </select>
-                                                                <label class="float-label">Gender</label>
-                                                            </div>
-
                                                             <div class="col-sm-4">
-                                                                <input type="text" name="inputCellNo" class="form-control" required="">
+                                                                <input type="text" name="inputCellNo" class="form-control" required="" disabled value="<%=onLoadCellNo != null ? onLoadCellNo : "" %>">
                                                                 <label class="float-label">Cellphone #</label>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <input type="text" name="inputEmail" class="form-control" required="" disabled value="<%=onLoadEmail != null ? onLoadEmail : "" %>">
+                                                                <label class="float-label">Email#</label>
                                                             </div>
 
                                                         </div>
                                                         <div class="form-group row form-default">
-
-
                                                             <div class="col-sm-12">
-                                                                <input type="text" name="inputHomeAddr" class="form-control" required="">
+                                                                <input type="text" name="inputHomeAddr" class="form-control" required="" disabled value="<%=onLoadhomeAddr != null ? onLoadhomeAddr : "" %>">
                                                                 <label class="float-label">Home Address</label>
                                                             </div>
 
@@ -92,9 +99,9 @@
 
                                                     </form>
                                                     <br/><br/>
-                                                    <button class="btn btn-mat waves-effect waves-light btn-primary">Approve</button>
-                                                    <button class="btn btn-mat waves-effect waves-light btn-danger">Deny</button>
-                                                    <button class="btn btn-mat waves-effect waves-light btn-success">Finish</button>
+                                                    <button class="btn btn-mat waves-effect waves-light btn-primary" data-toggle="popover" data-html="true" data-placement="top" title="<b>Are you sure you want to approve this?</b>" data-content="<center><a href='enrollment-process?enrollmentId=<%=enrollmentId %>&statusId=2' class='btn-primary btn btn-mat waves-effect waves-light'>Confirm</button></a>">Approve</button>
+                                                    <button class="btn btn-mat waves-effect waves-light btn-danger" data-toggle="popover" data-html="true" data-placement="top" title="<b>Are you sure you want to deny this?</b>" data-content="<center><a href='enrollment-process?enrollmentId=<%=enrollmentId %>&statusId=3' class='btn-danger btn btn-mat waves-effect waves-light'>Confirm</button></a>">Deny</button>
+                                                    <button class="btn btn-mat waves-effect waves-light btn-success" data-toggle="popover" data-html="true" data-placement="top" title="<b>Are you sure you want to mark this as completed?</b>" data-content="<center><a href='enrollment-process?enrollmentId=<%=enrollmentId %>&statusId=5' class='btn-success btn btn-mat waves-effect waves-light'>Confirm</button></a>">Mark as Course Completed</button>
                                                     <br/>
                                                 </div>
 
@@ -104,27 +111,12 @@
                                             <!-- Typography card start -->
                                             <div class="card">
                                                 <div class="card-header">
-                                                    <h5>Application</h5>
+                                                    <h5>Applying For</h5>
                                                 </div>
                                                 <div class="card-block typography">
-                                                    <h5>Bachelor of Science Information Technology (BSIT)</h5>
-                                                    <span>This program focuses on computers and technology.It primarily aims to equipped students to the fast emerging needs of IT industry by instructing them on the principles of computer hardware and software components, algorithms, databases, telecommunications, user tactics, web developments, application testing, and computer graphics. Therefore, be well-prepared upon applying for IT support business processes.</span>
+                                                    <h5><%=onLoadSubject != null ? onLoadSubject : "" %></h5>
+                                                    <span><%=onLoadShortDesc != null ? onLoadShortDesc : "" %></span>
                                                     <br/><br/>
-                                                    <h4 class="sub-title">Curriculum</h4>
-                                                    <ul>
-                                                        <li>
-                                                            <i class="icofont icofont-double-right text-success"></i> Access to a computer with an internet connection.
-                                                        </li>
-                                                        <li>
-                                                            <i class="icofont icofont-double-right text-success"></i> Consectetur adipiscing elit
-                                                        </li>
-                                                        <li>
-                                                            <i class="icofont icofont-double-right text-success"></i> Integer molestie lorem at massa
-                                                        </li>
-                                                    </ul>
-                                                    <br/><br/>
-
-
 
                                                 </div>
 
@@ -152,7 +144,17 @@
 </div>
 
 <%@include file="WEB-INF/layout/body/footer.jsp" %>
+<script>
+    $(document).ready(function() {
+        $('[data-toggle="popover"]').popover({
+            html: true,
+            content: function() {
+                return $('#primary-popover-content').html();
+            }
+        });
+    });
 
+</script>
 </body>
 
 </html>

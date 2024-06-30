@@ -3,6 +3,18 @@
 
 <head>
     <%@include file="WEB-INF/layout/head/headcontents.jsp" %>
+    <%@ page import="java.sql.*" %>
+    <%@ page import="com.appdevfinalproject.common.DatabaseConnection" %>
+    <%
+    String userId = (String)session.getAttribute("userId");
+    userId = userId != null ? userId : "";
+
+    String sql = "select e.id, c.subject,  s.name status, s.id status_id, e.user_id from enrollments e INNER JOIN statuses s on e.status=s.id inner join courses c on e.course_id = c.id where e.user_id="+userId;
+
+    Connection con = DatabaseConnection.getCon();
+    PreparedStatement preparedStatement = con.prepareStatement(sql);
+    ResultSet resultSet = preparedStatement.executeQuery();
+    %>
 </head>
 
 <body>
@@ -59,61 +71,48 @@
                                                                 <tr>
                                                                     <th>#</th>
                                                                     <th>Course Applied</th>
-                                                                    <th>School Year</th>
+
                                                                     <th>Status</th>
                                                                 </tr>
+
                                                             </thead>
                                                             <tbody>
+                                                            <% while(resultSet.next()){ %>
+
+                                                            <%
+                                                            String tdClass = "label-inverse-default";
+
+                                                            if (Integer.valueOf(resultSet.getString(4))==1){
+                                                                tdClass = "label-info";
+                                                            }
+
+                                                            if (Integer.valueOf(resultSet.getString(4))==2){
+                                                                tdClass = "label-inverse-success";
+                                                            }
+
+                                                            if (Integer.valueOf(resultSet.getString(4))==3){
+                                                                tdClass = "label-inverse-danger";
+                                                            }
+
+                                                            if (Integer.valueOf(resultSet.getString(4))==4){
+                                                                tdClass = "label-danger";
+                                                            }
+
+                                                            if (Integer.valueOf(resultSet.getString(4))==5){
+                                                                tdClass = "label-success";
+                                                            }
+                                                            %>
                                                                 <tr>
-                                                                    <th scope="row">1</th>
-                                                                    <td>Bachelor of Science Information Technology (BSIT)</td>
-                                                                    <td>2024</td>
+                                                                    <th scope="row"><%= resultSet.getString(1) %></th>
+                                                                    <td><%= resultSet.getString(2) %></td>
+
                                                                     <td>
-                                                                        <div class="waves-effect waves-light p-b-10">
-                                                                            <div class="bg-warning p-10">PENDING</div>
+                                                                        <div class="label-main">
+                                                                            <label class="label <%=tdClass %> "><%= resultSet.getString(3) %></label>
                                                                         </div>
                                                                     </td>
                                                                 </tr>
-                                                                <tr>
-                                                                    <th scope="row">2</th>
-                                                                    <td>Bachelor of Science Information Technology (BSIT)</td>
-                                                                    <td>2024</td>
-                                                                    <td>
-                                                                        <div class="waves-effect waves-light p-b-10">
-                                                                            <div class="bg-danger p-10">DENIED</div>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th scope="row">3</th>
-                                                                    <td>Bachelor of Science Information Technology (BSIT)</td>
-                                                                    <td>2024</td>
-                                                                    <td>
-                                                                        <div class="waves-effect waves-light p-b-10">
-                                                                            <div class="bg-success p-10">FINISHED</div>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th scope="row">4</th>
-                                                                    <td>Bachelor of Science Information Technology (BSIT)</td>
-                                                                    <td>2024</td>
-                                                                    <td>
-                                                                        <div class="waves-effect waves-light p-b-10">
-                                                                            <div class="bg-info p-10">ENROLLED</div>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <th scope="row">5</th>
-                                                                    <td>Bachelor of Science Information Technology (BSIT)</td>
-                                                                    <td>2024</td>
-                                                                    <td>
-                                                                        <div class="waves-effect waves-light p-b-10">
-                                                                            <div class="bg-default p-10">INCOMPLETE</div>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
+                                                                <% } %>
                                                             </tbody>
                                                         </table>
                                                     </div>
